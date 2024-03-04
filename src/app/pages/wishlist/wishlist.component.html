@@ -1,0 +1,131 @@
+<app-looder></app-looder>
+<div
+  *ngIf="allProducts.length > 0; else emptyWishList"
+  class="row g-3 justify-content-start py-5 larg-wish"
+>
+  <div
+    class="col-md-2 product text-center cursor-pointer shadow-sm bg-white mx-2 position-relative product"
+    *ngFor="let item of allProducts"
+  >
+    <div
+      class="fav-icon position-absolute bg-white p-1 shadow-lg rounded-circle"
+    >
+      <i
+        class="fa-solid fa-heart main-color text-main fa-xl"
+        type="submit"
+        pButton
+        pRipple
+        (click)="removeWishItem(item.id)"
+        *ngIf="wishListData.includes(item.id)"
+      ></i>
+    </div>
+    <img
+      [routerLink]="['/productDetails', item.id]"
+      [src]="item.imageCover"
+      [alt]="item.title"
+      height="200"
+      class="w-100"
+    />
+    <h3 class="text-main fw-bold title pt-2">{{ item.category.name }}</h3>
+    <h3 class="h6">{{ item.title.split(" ").slice(0, 2).join(" ") }}</h3>
+    <div class="text d-flex justify-content-around">
+      <p>{{ item.price }} EGP</p>
+      <p>
+        {{ item.ratingsAverage }}
+        <span><i class="fa-solid fa-star rating-color"></i></span>
+      </p>
+    </div>
+    <button
+      class="btn bg-main text-white"
+      (click)="addToCart(item.id)"
+      type="submit"
+      pButton
+      pRipple
+    >
+      Add to Cart <i class="fa-solid fa-cart-plus ps-2"></i>
+    </button>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <p-toast></p-toast>
+  </div>
+</div>
+
+<ng-template #emptyWishList>
+  <div class="wish-list text-center empty py-5">
+    <i class="fa-solid fa-clipboard-list fa-4x text-main"></i>
+    <h5 class="text-color fw-bold pt-3">No items in your wish list</h5>
+    <p>back to home page discover all product and get hot offers!</p>
+    <button class="btn bg-main text-white" routerLink="/products">
+      Discover products
+    </button>
+  </div>
+</ng-template>
+
+<div class="contain py-5 d-lg-none d-md-none">
+  <div class="product-view" *ngFor="let item of allProducts">
+    <div class="card mb-3" style="max-width: 540px">
+      <div class="row g-0">
+        <div class="col-4">
+          <!-- Image column -->
+          <img
+            [routerLink]="['/productDetails', item.id]"
+            [src]="item.imageCover"
+            [alt]="item.title"
+            height="200"
+            class="w-100 p-3"
+          />
+        </div>
+        <div class="col-8">
+          <!-- Content column -->
+          <div class="card-body text-start">
+            <h3 class="h5">
+              {{ item.title.split(" ").slice(0, 2).join(" ") }}
+            </h3>
+            <h3 class="text-main fw-bold title">
+              {{ item.category.name }}
+            </h3>
+
+            <div class="text d-flex">
+              <p class="pe-5">{{ item.price }} EGP</p>
+              <p>
+                {{ item.ratingsAverage }}
+                <span><i class="fa-solid fa-star rating-color"></i></span>
+              </p>
+            </div>
+            <div class="contain position-relative">
+              <button
+                class="btn bg-main text-white mt-3"
+                (click)="addToCart(item.id)"
+                type="submit"
+                pButton
+                pRipple
+              >
+                Add to Cart <i class="fa-solid fa-cart-plus ps-2"></i>
+              </button>
+              <div
+                class="fav-icon position-absolute bg-white p-1 shadow-lg rounded-circle"
+              >
+                <i
+                  class="fa-regular fa-heart fa-xl"
+                  type="submit"
+                  pButton
+                  pRipple
+                  (click)="addToFav(item.id)"
+                  *ngIf="!wishListData.includes(item.id)"
+                ></i>
+                <i
+                  class="fa-solid fa-heart main-color text-main fa-xl"
+                  type="submit"
+                  pButton
+                  pRipple
+                  (click)="removeWishItem(item.id)"
+                  *ngIf="wishListData.includes(item.id)"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

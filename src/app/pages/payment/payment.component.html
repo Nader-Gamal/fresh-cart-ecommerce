@@ -1,0 +1,36 @@
+<div class="container py-5">
+  <form class="pay" [formGroup]="shippingAddress" (ngSubmit)="handleOnline()">
+    <div class="form-group">
+      <input
+        type="text"
+        class="user"
+        name="user"
+        placeholder="Details"
+        formControlName="details"
+        id="details"
+      />
+      <input
+        type="tel"
+        class="pwd"
+        name="pwd"
+        placeholder="phone"
+        formControlName="phone"
+        id="phone"
+      />
+      <input
+        type="text"
+        class="city"
+        name="city"
+        placeholder="Search for City"
+        formControlName="city"
+        id="city"
+        list="cityList"
+      />
+      <datalist id="cityList">
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+      </datalist>
+    </div>
+    <br />
+    <input type="submit" class="btn" value="Pay" />
+  </form>
+</div>

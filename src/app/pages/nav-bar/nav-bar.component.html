@@ -1,0 +1,240 @@
+<nav class="navbar navbar-expand-lg bg-white st-nav">
+  <div class="container">
+    <!-- mobile nav -->
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasScrolling"
+      aria-controls="offcanvasScrolling"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="button-nav"><i class="fa-solid fa-bars"></i></span>
+    </button>
+
+    <div
+      class="offcanvas offcanvas-start d-lg-none"
+      data-bs-scroll="true"
+      data-bs-backdrop="false"
+      tabindex="-1"
+      id="offcanvasScrolling"
+      aria-labelledby="offcanvasScrollingLabel"
+    >
+      <div class="offcanvas-header bg-light sub-nav">
+        <div class="offcanvas-titl mt-3" id="offcanvasScrollingLabel">
+          <i class="fa-solid fa-user fa-xl user text-color"></i>
+          <ul class="z-3 nav-bar list-unstyled d-flex my-3">
+            <ng-template [ngIf]="!isLogin">
+              <li class="nav-item">
+                <a class="nav-link pe-2 fw-bolder" routerLink="register"
+                  >Regester</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="signIn">Login</a>
+              </li>
+            </ng-template>
+            <li class="nav-item" *ngIf="isLogin">
+              <button (click)="singnOut()" class="nav-link p-0">SignOut</button>
+            </li>
+          </ul>
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div>
+        <div class="nav-contain">
+          <ul class="mob-nav-items">
+            <li class="d-flex my-4 mx-2 px-2">
+              <i class="fa-solid fa-house pt-1 pe-4 text-color"></i>
+              <a routerLink="home" routerLinkActive="active"><p>Home</p></a>
+            </li>
+            <li class="d-flex my-4 mx-2 px-2">
+              <i class="fa-solid fa-list pt-1 pe-4 text-color"></i>
+              <a
+                routerLinkActive="active"
+                routerLink="categories"
+                routerLinkActive="active"
+                ><p>Categories</p></a
+              >
+            </li>
+            <li class="d-flex my-4 mx-2 px-2">
+              <i class="fa-solid fa-store pt-1 pe-4 text-color"></i>
+              <a routerLink="products" routerLinkActive="active"
+                ><p>Products</p></a
+              >
+            </li>
+            <li class="d-flex my-4 mx-2 px-2">
+              <i class="fa-solid fa-copyright pt-1 pe-4 text-color"></i>
+              <a routerLink="brands" routerLinkActive="active"><p>Brands</p></a>
+            </li>
+          </ul>
+          <hr class="mx-3" />
+          <ul class="mob-nav-items">
+            <li class="d-flex my-4 mx-2 px-2">
+              <i class="fa-solid fa-globe pt-1 pe-4 text-color"></i>
+              <a><p>Language</p></a>
+            </li>
+            <li class="d-flex my-4 mx-2 px-2">
+              <i class="fa-solid fa-headphones-simple pt-1 pe-4 text-color"></i>
+              <a><p>Contact us</p></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a class="navbar-brand fw-bolder text-main" routerLink="home"
+      ><img src="assets/images/logo-symbol.svg" alt="" /> Fresh Cart</a
+    >
+
+    <div class="card flex flex-column md:flex-row gap-3 m-auto">
+      <!-- search.component.html -->
+      <div class="search">
+        <input
+          type="text"
+          placeholder="Type here..."
+          class="input"
+          id="navbarSupportedContent"
+          placeholder="Search over all products"
+          [(ngModel)]="term"
+        />
+        <select class="select px-3">
+          <option value="option1">Categories</option>
+          <option value="option2" class="form-control">Music</option>
+          <option value="option2" class="form-control">Men's Fashion</option>
+          <option value="option2" class="form-control">Women's Fashion</option>
+          <option value="option2" class="form-control">Super Markets</option>
+          <option value="option2" class="form-control">Body & Toys</option>
+          <option value="option2" class="form-control">Home</option>
+          <option value="option2" class="form-control">Books</option>
+          <option value="option2" class="form-control">Beauty & Health</option>
+          <option value="option2" class="form-control">
+            Mobile & Electornic
+          </option>
+          <!-- Add more options as needed -->
+        </select>
+        <button (click)="searchService.changeSearchTerm(term)">Search</button>
+      </div>
+    </div>
+    <div class="nav-icons d-flex text-center mt-4 text-color">
+      <div
+        class="profile px-2 cursor-pointer profile"
+        (click)="toggleOptions()"
+      >
+        <i class="fa-solid fa-user fa-xl mb-3"></i>
+        <h6>profile</h6>
+      </div>
+
+      <div class="options position-relative" *ngIf="showOptions">
+        <ul class="position-absolute shadow-lg z-3 options nav-bar">
+          <ng-template [ngIf]="!isLogin">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="register">Regester</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="signIn">Login</a>
+            </li>
+          </ng-template>
+          <li class="nav-item" *ngIf="isLogin">
+            <button (click)="singnOut()" class="nav-link">SignOut</button>
+          </li>
+        </ul>
+      </div>
+      <a class="nav-link position-relative" routerLink="wishlist">
+        <div class="orders px-2 cursor-pointer position-relative">
+          <i class="fa-solid fa-heart fa-xl mb-3"></i>
+          <h6>wish list</h6>
+          <span class="badge bag-wish bg-main position-absolute">{{
+            wishItems
+          }}</span>
+        </div>
+      </a>
+      <a class="nav-link position-relative" routerLink="cart">
+        <div class="cart px-2 position-relative cursor-pointer">
+          <i class="fa-solid fa-bag-shopping fa-2xl mb-3"></i>
+          <h6>cart</h6>
+          <span class="badge bag-cart bg-main position-absolute">{{
+            cartNum
+          }}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg bg-white sub-nav ng-nav">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="categories"
+            >All Categories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="products"
+            >Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="brands"
+            >Brands</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active"> Help</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-self-center">
+        <li class="nav-item">
+          <a class="nav-link">English,EGP</a>
+        </li>
+        <li class="nav-item d-flex">
+          <a class="nav-link shop">ship to</a>
+
+          <div class="card flex justify-content-center drop-item">
+            <p-dropdown
+              [options]="countries"
+              [(ngModel)]="selectedCountry"
+              optionLabel="name"
+              [showClear]="true"
+              placeholder=" Country"
+            >
+              <ng-template pTemplate="selectedItem">
+                <div class="flex align-items-center" *ngIf="selectedCountry">
+                  <div>
+                    <img [src]="selectedCountry.img" alt="" width="25px" />
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template let-country pTemplate="item">
+                <div class="d-flex">
+                  <div>
+                    <img [src]="country.img" alt="" width="25px" />
+                  </div>
+                  <div class="fs-6 ps-2">{{ country.name }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="search d-lg-none d-md-none text-center pt-3 bg-light">
+  <input
+    type="text"
+    placeholder="Type here..."
+    id="navbarSupportedContent"
+    placeholder="Search over all products"
+    [(ngModel)]="term"
+  />
+  <button (click)="searchService.changeSearchTerm(term)">Search</button>
+</div>

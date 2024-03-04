@@ -1,0 +1,68 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+    <div class="py-5 w-75 mx-auto">
+      <h2 class="mb-3">Login Now:</h2>
+      <div class="alert alert-danger my-3" *ngIf="apiErr">{{ apiErr }}</div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email:</label>
+        <input type="email" class="form-control" formControlName="email" />
+        <div
+          class="alert alert-danger my-2"
+          role="alert"
+          *ngIf="
+            loginForm.get('email')?.errors && loginForm.get('email')?.touched
+          "
+        >
+          <p *ngIf="loginForm.get('email')?.hasError('required')" class="m-0">
+            Email is required
+          </p>
+          <p *ngIf="loginForm.get('email')?.hasError('email')" class="m-0">
+            Inalid email
+          </p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Password:</label
+        >
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <div
+          class="alert alert-danger my-2"
+          role="alert"
+          *ngIf="
+            loginForm.get('password')?.errors &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <p
+            class="m-0"
+            *ngIf="loginForm.get('password')?.hasError('required')"
+          >
+            Password Required
+          </p>
+          <p class="m-0" *ngIf="loginForm.get('password')?.hasError('pattern')">
+            Password Not Vaild
+          </p>
+        </div>
+      </div>
+      <div class="forgetPassword">
+        <p
+          class="cursor-pointer text-main fw-bold"
+          routerLink="/forgetpassword"
+        >
+          Forget Password?
+        </p>
+      </div>
+      <div class="mb-3">
+        <button class="btn bg-main text-white d-block ms-auto">
+          <i class="fa fa-spin fa-spinner" *ngIf="isLoding"></i>
+          <span *ngIf="!isLoding">Login</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

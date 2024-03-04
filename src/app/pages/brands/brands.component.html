@@ -1,0 +1,12 @@
+<app-looder></app-looder>
+<div class="container py-5">
+  <div class="row g-3 justify-content-center">
+    <div
+      class="col-md-2 product text-center cursor-pointer shadow-sm bg-white mx-2"
+      *ngFor="let item of brands"
+    >
+      <img [src]="item.image" [alt]="item.name" height="180" class="w-100" />
+      <h6>{{ item.name }}</h6>
+    </div>
+  </div>
+</div>

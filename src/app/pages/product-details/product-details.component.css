@@ -1,0 +1,7 @@
+.carousel-control-next i,
+.carousel-control-prev i {
+  color: #fff;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  padding: 10px;
+}

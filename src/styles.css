@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+/* styles.scss */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+@import "~primeng/resources/themes/saga-blue/theme.css";
+@import "~primeng/resources/primeng.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+
+:root {
+  --main-color: #0d6efd;
+  --light-color: #f7fafc;
+  --text-color: #8b96a5;
+  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --font-family: "Encode Sans Expanded", sans-serif;
+  --rating-color: #ffc908;
+}
+
+body {
+  font-family: var(--font-family) !important;
+}
+.rating-color {
+  color: var(--rating-color) !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+a,
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+.product:hover {
+  box-shadow: var(--shadow);
+  border: solid 1px var(--main-color);
+}
+.product .btn {
+  transition: transform 0.6s, opacity 0.6s;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.product:hover .btn {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.font-sm {
+  font-size: 14px;
+}
+.text-main {
+  color: var(--main-color) !important;
+}
+.text-color {
+  color: var(--text-color);
+}
+.bg-gray {
+  background-color: var(--text-color);
+}
+.bg-main {
+  background-color: var(--main-color) !important;
+  background-image: linear-gradient(
+    to right,
+    #127ff7,
+    #0079fa,
+    #0074fc,
+    #006efe,
+    #0067ff
+  ) !important;
+}
+.bg-main-light {
+  background-color: var(--light-color) !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.sub-nav {
+  border-top: 1px solid #bdc4cd;
+  border-bottom: 1px solid #bdc4cd;
+}

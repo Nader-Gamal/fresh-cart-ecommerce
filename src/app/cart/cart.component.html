@@ -1,0 +1,187 @@
+<app-looder-cart></app-looder-cart>
+
+<div class="containert">
+  <ng-container *ngIf="isCartEmpty; else cartContent">
+    <!-- Empty cart message -->
+    <div class="empty text-center tex py-5">
+      <img src="../../assets/images/empty-cart.png" alt="" class="w-25" />
+      <h4 class="my-3">Your cart is empty</h4>
+      <p class="my-3">
+        you looks like have no added any thing to your cart. Go ahead and
+        explore top products
+      </p>
+      <section>
+        <div class="example-button-row">
+          <button
+            mat-raised-button
+            class="text-white bg-main"
+            routerLink="/home"
+          >
+            <i class="fa-solid fa-left-long"></i> Back to shop
+          </button>
+        </div>
+      </section>
+    </div>
+  </ng-container>
+
+  <ng-template #cartContent>
+    <div class="contain py-5" *ngIf="carDetails?.data?.products">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="price d-flex justify-content-between">
+            <h4 class="pb-3 fw-bold">
+              My Cart (<span>{{ carDetails.numOfCartItems }}</span
+              >)
+            </h4>
+            <h5>
+              Total Price: <span>{{ carDetails.data.totalCartPrice }}</span>
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- card -->
+        <div class="col-md-8 bg-white py-3 me-3 h-100 shadow-sm">
+          <div
+            class="row"
+            *ngFor="let item of carDetails.data.products | removeEmpty"
+          >
+            <div class="col-md-9 d-flex">
+              <img
+                [src]="item.product.imageCover"
+                alt=""
+                width="90px"
+                height="90px"
+                class="rounded-2"
+              />
+              <div class="text ps-3">
+                <h6 class="fw-bold text-muted">
+                  {{ item.product.title }}
+                </h6>
+                <p>{{ item.product.category.name }}</p>
+                <section>
+                  <div class="example-button-row">
+                    <button
+                      mat-raised-button
+                      class="text-danger me-2"
+                      (click)="deletItem(item.product.id)"
+                    >
+                      Remove
+                    </button>
+                    <button mat-raised-button class="text-main">
+                      Add to wish list
+                    </button>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <div
+              class="col-md-3 d-flex align-items-end justify-content-between mt-4 flex-lg"
+            >
+              <h5>{{ item.price * item.count }} EGP</h5>
+              <div class="items-count d-flex">
+                <div class="add">
+                  <div
+                    class="btn"
+                    (click)="updateCount(item.count + 1, item.product.id)"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </div>
+                </div>
+                <div class="price align-self-end">
+                  <p>{{ item.count }}</p>
+                </div>
+                <div class="sub">
+                  <div
+                    class="btn"
+                    (click)="updateCount(item.count - 1, item.product.id)"
+                  >
+                    <i class="fa-solid fa-minus"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="text-color my-4 w-100" />
+          </div>
+
+          <div class="row d-flex">
+            <div class="col-md-12 d-flex justify-content-between">
+              <section>
+                <div class="example-button-row">
+                  <button
+                    mat-raised-button
+                    class="text-white bg-main"
+                    routerLink="/home"
+                  >
+                    Back to shop
+                  </button>
+                </div>
+              </section>
+              <section>
+                <div class="example-button-row">
+                  <button
+                    mat-raised-button
+                    class="text-danger"
+                    (click)="clearCart()"
+                  >
+                    Remove All
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-md-3 bg-white ms-auto d-flex flex-column justify-content-center py-4 shadow-sm h-100 mob-subtotal"
+        >
+          <div class="total-price d-flex justify-content-between">
+            <h6>Subtotal:</h6>
+            <h6>{{ carDetails.data.totalCartPrice }} EGP</h6>
+          </div>
+          <div class="tax d-flex justify-content-between">
+            <h6>Tax 14%:</h6>
+            <h6>
+              {{ ((carDetails.data.totalCartPrice * 14) / 100).toFixed(2) }} EGP
+            </h6>
+          </div>
+          <hr class="text-color w-100 my-4" />
+          <div class="total d-flex justify-content-between">
+            <h5>Total:</h5>
+            <h5 class="text-main fw-bold">
+              {{
+                (
+                  (carDetails.data.totalCartPrice * 14) / 100 +
+                  carDetails.data.totalCartPrice
+                ).toFixed(2)
+              }}
+              EGP
+            </h5>
+          </div>
+          <section>
+            <div class="example-button-row mt-4">
+              <!-- cart.component.html -->
+
+              <button
+                mat-raised-button
+                class="text-white bg-main w-100"
+                [routerLink]="['/payment']"
+                [queryParams]="{ cartId: carDetails.data._id }"
+              >
+                Check Out
+              </button>
+            </div>
+          </section>
+          <div class="pay-imgs d-flex justify-content-center mt-3">
+            <img src="./assets/images/visa-1.svg" alt="visa" />
+            <img src="./assets/images/master.svg" alt="master" />
+            <img
+              src="./assets/images/meeza-seeklogo.svg"
+              alt="meza"
+              width="85px"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

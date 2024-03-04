@@ -1,0 +1,48 @@
+.text p {
+  font-size: 14px;
+  color: #8b96a5;
+}
+.form-select {
+  width: 50%;
+}
+.btn {
+  background-color: var(--main-color);
+  padding: 2px 5px;
+  border-radius: 10px;
+  border: 1px solid var(--main-color);
+  padding: 5px 10px;
+  margin: 0 10px;
+}
+.btn:hover {
+  background-color: transparent;
+  border: 1px solid var(--main-color);
+}
+.btn i {
+  color: #fff;
+  font-size: 12px;
+}
+.btn:hover i {
+  color: var(--main-color);
+}
+.price {
+  font-size: 18px;
+  font-weight: bold;
+}
+.fixed-right {
+  position: fixed;
+  top: 20%; /* Adjust as needed based on your layout */
+  right: 4%; /* Adjust as needed based on your layout */
+  overflow-y: auto; /* Allow scrolling if the content is too tall */
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 767px) {
+  .mob-subtotal {
+    margin: 45px 0;
+  }
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* Styles specific to tablets */
+}

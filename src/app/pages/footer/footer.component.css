@@ -1,0 +1,31 @@
+ul li {
+  list-style: none;
+}
+.mob-footer {
+  display: none;
+}
+
+/* media for mobil */
+@media screen and (max-width: 768px) {
+  .footer-text {
+    font-size: 13px;
+    width: 80%;
+    margin: auto;
+  }
+  .lg-footer {
+    display: none;
+  }
+  .mob-footer {
+    display: block;
+  }
+  .mob-footer ul li {
+    font-size: 13px;
+  }
+}
+
+/* media for tablets */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .mob-footer ul li i {
+    font-size: 15px;
+  }
+}

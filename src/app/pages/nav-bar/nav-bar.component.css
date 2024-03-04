@@ -1,0 +1,151 @@
+search.component.css .combined-search {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  border: #007bff solid 2px;
+}
+
+input,
+select,
+button {
+  padding: 8px;
+  font-size: 14px;
+  outline: none; /* Remove the outline on focus */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+input:active,
+input:focus {
+  border-radius: 3px;
+  border-color: #007bff; /* Change border color on focus */
+}
+.search button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+}
+.search button:hover,
+.search button:active {
+  z-index: 2;
+  border-left: #007bff solid 1px;
+  background-color: transparent;
+  color: #007bff;
+}
+.select {
+  padding: 10px 0;
+  border: none;
+  border-left: #007bff solid 2px;
+}
+.card {
+  border: #007bff solid 2px;
+}
+.input {
+  border: none;
+  width: 500px;
+}
+.nav-icons h6 {
+  font-size: 10px;
+}
+.bag-cart {
+  top: -10px;
+  left: 24px;
+}
+.bag-wish {
+  top: -10px;
+  left: 30px;
+}
+.nav-item .active {
+  color: #007bff !important;
+  font-weight: 600;
+}
+.options {
+  top: 25px;
+  left: -33px;
+  background-color: var(--light-color);
+  border-radius: 10px;
+}
+.options ul {
+  list-style: none;
+}
+.options ul li {
+  padding: 10px 30px 10px 0;
+}
+
+/* nav button toggle */
+.button-nav {
+  padding: 15px 5px;
+  color: #007bff;
+}
+.button-nav:hover,
+.button-nav:focus,
+.button-nav:active {
+  color: #fff;
+}
+.navbar-toggler {
+  background-color: #fff;
+}
+.navbar-toggler:hover {
+  background-color: #007bff;
+}
+.mob-nav-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* media query for mobile */
+@media screen and (max-width: 600px) {
+  .card,
+  .ng-nav {
+    display: none;
+  }
+  .st-nav {
+    border-top: 1px solid #bdc4cd;
+    border-bottom: 1px solid #bdc4cd;
+  }
+  .offcanvas {
+    width: 80%;
+  }
+  .profile {
+    display: none;
+  }
+  .active {
+    color: #007bff;
+    font-weight: 600;
+  }
+  .search {
+    width: 100%;
+  }
+  .search button:hover,
+  .search button:active {
+    border: #007bff solid 1px;
+  }
+}
+
+/* media query for lab */
+@media screen and (min-width: 601px) and (max-width: 1200px) {
+  .ng-nav {
+    display: none;
+  }
+  .input {
+    border: none;
+    width: 150px;
+  }
+  .select {
+    display: none;
+  }
+  .st-nav {
+    border-top: 1px solid #bdc4cd;
+    border-bottom: 1px solid #bdc4cd;
+  }
+  .offcanvas {
+    width: 80%;
+  }
+  .profile {
+    display: none;
+  }
+  .active {
+    color: #007bff;
+    font-weight: 600;
+  }
+}

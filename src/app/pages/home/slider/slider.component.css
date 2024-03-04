@@ -1,0 +1,23 @@
+.lg-hight {
+  height: 400px;
+}
+/* media query for mobile  */
+@media only screen and (max-width: 768px) {
+  .item-list {
+    display: none;
+  }
+  .lg-hight {
+    height: 200px;
+  }
+}
+
+/* media for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .item-list {
+    display: none;
+  }
+  .lg-hight {
+    height: 300px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,177 @@
+<app-looder></app-looder>
+
+<div class="row g-3 justify-content-center py-5 larg-screen">
+  <div
+    class="col-md-2 product text-center cursor-pointer shadow-sm bg-white mx-2 position-relative product"
+    *ngFor="
+      let item of allProducts
+        | paginate
+          : {
+              id: 'foo',
+              itemsPerPage: pageSize,
+              currentPage: p,
+              totalItems: totalItems
+            }
+        | searchPipe : term
+    "
+  >
+    <div
+      class="fav-icon position-absolute bg-white p-1 shadow-lg rounded-circle"
+    >
+      <i
+        class="fa-regular fa-heart fa-xl"
+        type="submit"
+        pButton
+        pRipple
+        (click)="addToFav(item.id)"
+        *ngIf="!wishListData.includes(item.id)"
+      ></i>
+      <i
+        class="fa-solid fa-heart main-color text-main fa-xl"
+        type="submit"
+        pButton
+        pRipple
+        (click)="removeWishItem(item.id)"
+        *ngIf="wishListData.includes(item.id)"
+      ></i>
+    </div>
+
+    <img
+      [routerLink]="['/productDetails', item.id]"
+      [src]="item.imageCover"
+      [alt]="item.title"
+      height="200"
+      class="w-100"
+    />
+    <h3 class="text-main fw-bold title pt-2">{{ item.category.name }}</h3>
+    <h3 class="h6">{{ item.title.split(" ").slice(0, 2).join(" ") }}</h3>
+    <div class="text d-flex justify-content-around">
+      <p>{{ item.price }} EGP</p>
+      <p>
+        {{ item.ratingsAverage }}
+        <span><i class="fa-solid fa-star rating-color"></i></span>
+      </p>
+    </div>
+    <button
+      class="btn bg-main text-white"
+      (click)="addToCart(item.id)"
+      type="submit"
+      pButton
+      pRipple
+    >
+      Add to Cart <i class="fa-solid fa-cart-plus ps-2"></i>
+    </button>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <pagination-controls
+      id="foo"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      [maxSize]="9"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+    <p-toast></p-toast>
+  </div>
+</div>
+
+<div class="contain py-5 d-lg-none d-md-none">
+  <div
+    class="product-view"
+    *ngFor="
+      let item of (allProducts | searchPipe : term).slice(
+        (p - 1) * pageSize,
+        p * pageSize
+      )
+    "
+  >
+    <div class="card mb-3" style="max-width: 540px">
+      <div class="row g-0">
+        <div class="col-4">
+          <!-- Image column -->
+          <img
+            [routerLink]="['/productDetails', item.id]"
+            [src]="item.imageCover"
+            [alt]="item.title"
+            height="200"
+            class="w-100 p-3"
+          />
+        </div>
+        <div class="col-8">
+          <!-- Content column -->
+          <div class="card-body text-start">
+            <h3 class="h5">
+              {{ item.title.split(" ").slice(0, 2).join(" ") }}
+            </h3>
+            <h3 class="text-main fw-bold title">
+              {{ item.category.name }}
+            </h3>
+
+            <div class="text d-flex">
+              <p class="pe-5">{{ item.price }} EGP</p>
+              <p>
+                {{ item.ratingsAverage }}
+                <span><i class="fa-solid fa-star rating-color"></i></span>
+              </p>
+            </div>
+            <div class="contain position-relative">
+              <button
+                class="btn bg-main text-white mt-3"
+                (click)="addToCart(item.id)"
+                type="submit"
+                pButton
+                pRipple
+              >
+                Add to Cart <i class="fa-solid fa-cart-plus ps-2"></i>
+              </button>
+              <div
+                class="fav-icon position-absolute bg-white p-1 shadow-lg rounded-circle"
+              >
+                <i
+                  class="fa-regular fa-heart fa-xl"
+                  type="submit"
+                  pButton
+                  pRipple
+                  (click)="addToFav(item.id)"
+                  *ngIf="!wishListData.includes(item.id)"
+                ></i>
+                <i
+                  class="fa-solid fa-heart main-color text-main fa-xl"
+                  type="submit"
+                  pButton
+                  pRipple
+                  (click)="removeWishItem(item.id)"
+                  *ngIf="wishListData.includes(item.id)"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <pagination-controls
+      id="foo"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      [maxSize]="9"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+  </div>
+</div>

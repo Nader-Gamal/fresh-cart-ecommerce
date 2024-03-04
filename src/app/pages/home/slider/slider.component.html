@@ -1,0 +1,29 @@
+<div class="container py-4">
+  <div class="row g-0">
+    <div class="col-md-3 item-list">
+      <div class="card flex justify-content-center">
+        <p-listbox
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          optionLabel="name"
+          [style]="{ width: '100%' }"
+          [style]="{ paddingRight: '35px' }"
+          [listStyle]="{ 'max-height': '100%' }"
+        ></p-listbox>
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-12">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <img [src]="'assets/images/main-slider-1.jpeg'" class="lg-hight" />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img [src]="'assets/images/main-slider-2.jpeg'" class="lg-hight" />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img [src]="'assets/images/main-slider-3.jpeg'" class="lg-hight" />
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>
